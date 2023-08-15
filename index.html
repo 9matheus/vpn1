@@ -1,0 +1,752 @@
+<!DOCTYPE html><html lang="pt-br"><!--<![endif]--><head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.3",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let r=arguments[0][e];delete arguments[0][e],arguments[0][t(e)]=r})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <!-- Google Tag Manager -->
+    <script type="rocketlazyloadscript">
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WX3F2M4');
+    </script>
+
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-0NQ2DPN8JC"></script>
+    <script type="rocketlazyloadscript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-0NQ2DPN8JC');
+    </script>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="alternate" hreflang="en" href="https://www.urban-vpn.com/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="fr" href="https://www.urban-vpn.com/fr/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="de" href="https://www.urban-vpn.com/de/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="it" href="https://www.urban-vpn.com/it/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="fi" href="https://www.urban-vpn.com/fi/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="no" href="https://www.urban-vpn.com/no/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="pt-br" href="https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="es" href="https://www.urban-vpn.com/es/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="sv" href="https://www.urban-vpn.com/se/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="da" href="https://www.urban-vpn.com/dk/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="tr" href="https://www.urban-vpn.com/tr/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="id" href="https://www.urban-vpn.com/id/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="nl" href="https://www.urban-vpn.com/nl/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="hu" href="https://www.urban-vpn.com/hu/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="pl" href="https://www.urban-vpn.com/pl/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="ja" href="https://www.urban-vpn.com/ja/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="ro" href="https://www.urban-vpn.com/ro/locations/switzerland-vpn/">
+<link rel="alternate" hreflang="x-default" href="https://www.urban-vpn.com/locations/switzerland-vpn/">
+
+	<!-- This site is optimized with the Yoast SEO plugin v20.8 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>VPN Suíça | Protege sua liberdade e privacidade na Internet</title>
+	<meta name="description" content="Procura a melhor VPN Suíça? Já achou. A UrbanVPN é um provedor de VPN grátis para VPN na Suíça, que cobre muitos países e está a apenas um clique de distância!">
+	<link rel="canonical" href="https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="VPN Suíça | Protege sua liberdade e privacidade na Internet">
+	<meta property="og:description" content="Procura a melhor VPN Suíça? Já achou. A UrbanVPN é um provedor de VPN grátis para VPN na Suíça, que cobre muitos países e está a apenas um clique de distância!">
+	<meta property="og:url" content="https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/">
+	<meta property="og:site_name" content="| Urban VPN">
+	<meta property="article:modified_time" content="2023-03-21T08:39:08+00:00">
+	<meta name="twitter:card" content="summary_large_image">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/","url":"https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/","name":"VPN Suíça | Protege sua liberdade e privacidade na Internet","isPartOf":{"@id":"https://www.urban-vpn.com/pt-br/#website"},"datePublished":"2023-03-17T08:39:08+00:00","dateModified":"2023-03-21T08:39:08+00:00","description":"Procura a melhor VPN Suíça? Já achou. A UrbanVPN é um provedor de VPN grátis para VPN na Suíça, que cobre muitos países e está a apenas um clique de distância!","breadcrumb":{"@id":"https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/#breadcrumb"},"inLanguage":"pt-BR","potentialAction":[{"@type":"ReadAction","target":["https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/"]}]},{"@type":"BreadcrumbList","@id":"https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.urban-vpn.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Suíça"}]},{"@type":"WebSite","@id":"https://www.urban-vpn.com/pt-br/#website","url":"https://www.urban-vpn.com/pt-br/","name":"| Urban VPN","description":"Urban VPN","publisher":{"@id":"https://www.urban-vpn.com/pt-br/#organization"},"inLanguage":"pt-BR"},{"@type":"Organization","@id":"https://www.urban-vpn.com/pt-br/#organization","name":"| Urban VPN","url":"https://www.urban-vpn.com/pt-br/","logo":{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://www.urban-vpn.com/pt-br/#/schema/logo/image/","url":"https://urban.lm-studio.co.il/wp-content/uploads/2023/02/logo.svg","contentUrl":"https://urban.lm-studio.co.il/wp-content/uploads/2023/02/logo.svg","width":120,"height":23,"caption":"| Urban VPN"},"image":{"@id":"https://www.urban-vpn.com/pt-br/#/schema/logo/image/"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+
+<link rel="alternate" type="application/rss+xml" title="Feed para | Urban VPN »" href="https://www.urban-vpn.com/pt-br/feed/">
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<style id="safe-svg-svg-icon-style-inline-css" type="text/css">
+.safe-svg-cover .safe-svg-inside{display:inline-block;max-width:100%}.safe-svg-cover svg{height:100%;max-height:100%;max-width:100%;width:100%}
+
+</style>
+<style id="global-styles-inline-css" type="text/css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link data-minify="1" rel="stylesheet" id="wpml-blocks-css" href="css/styles.css" type="text/css" media="all">
+<link data-minify="1" rel="stylesheet" id="cms-navigation-style-base-css" href="css/cms-navigation-base.css" type="text/css" media="screen">
+<link data-minify="1" rel="stylesheet" id="cms-navigation-style-css" href="css/cms-navigation.css" type="text/css" media="screen">
+<link data-minify="1" rel="stylesheet" id="bootstrap-css" href="css/bootstrap-grid.css" type="text/css" media="all">
+<link data-minify="1" rel="stylesheet" id="slickcss-css" href="css/slick.css" type="text/css" media="all">
+<link data-minify="1" rel="stylesheet" id="maincss-css" href="css/main.css" type="text/css" media="all">
+<link data-minify="1" rel="stylesheet" id="style-css" href="css/style.css" type="text/css" media="all">
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.0" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js" defer></script>
+<script type="text/javascript" id="wpml-cookie-js-extra">
+/* <![CDATA[ */
+var wpml_cookies = {"wp-wpml_current_language":{"value":"pt-br","expires":1,"path":"\/"}};
+var wpml_cookies = {"wp-wpml_current_language":{"value":"pt-br","expires":1,"path":"\/"}};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/plugins/sitepress-multilingual-cms/res/js/cookies/language-cookie.js?ver=1691159370" id="wpml-cookie-js" defer></script>
+<link rel="https://api.w.org/" href="https://www.urban-vpn.com/pt-br/wp-json/"><link rel="alternate" type="application/json" href="https://www.urban-vpn.com/pt-br/wp-json/wp/v2/locations/7191"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.urban-vpn.com/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.3">
+<link rel="shortlink" href="https://www.urban-vpn.com/pt-br/?p=7191">
+<link rel="alternate" type="application/json+oembed" href="https://www.urban-vpn.com/pt-br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.urban-vpn.com%2Fpt-br%2Flocations%2Fswitzerland-vpn%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.urban-vpn.com/pt-br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.urban-vpn.com%2Fpt-br%2Flocations%2Fswitzerland-vpn%2F&format=xml">
+<meta name="generator" content="WPML ver:4.6.3 stt:67,37,1,18,4,3,23,25,27,28,38,40,42,44,2,66,53;">
+</head>
+
+<body class="locations-template-default single single-locations postid-7191">
+    <div id="wrapper">
+        <header class="header" id="header">
+            <div class="header__inner">
+                <div class="header__top">
+                    <div class="container">
+
+                        <ul class="header__top-info header-status-line">
+                            <li>Your IP:<b class="js-user-ip"></b></li>
+                            <li>IP Country:<b class="js-user-country"></b></li>
+                            <li>ISP Name:<b class="js-user-ISP"></b></li>
+                            <li>Your ASN:<b class="js-user-ASN"></b></li>
+                            <li class="header__top-link">
+                                    <a data-ua-track="download_button" data-ua-track-params-position="header" data-product-id="URBAN_VPN_EXTENSION" class="button-black   dynamic_url_link start-now download-great dynamic_url_link" href="javascript:;">
+        Ocultar seu IP</a>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="header__bottom">
+                    <div class="container">
+                        <div class="mob__menu">
+                            <div class="mob__menu__icon"><img width="20" height="14" class="mob__menu__icon-menu" src="fonts/menu.svg" alt="="><img width="16" height="16" class="mob__menu__icon-x" src="fonts/close.svg" alt="x"></div>
+                            <div class="mob__menu__wrap">
+                                <ul>
+                                    <li id="menu-item-20267" class="right sub-menu__float menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20267"><a href="https://www.urban-vpn.com/pt-br/free-products/"></a>
+<ul class="sub-menu">
+	<li id="menu-item-20116" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20116"><a href="#"><div class="menu-item__img"> <img width="21" height="21" src="fonts/browser-2.svg" alt></div><span>Plugins para navegador</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20118"><a href="https://www.urban-vpn.com/pt-br/free-products/free-browser-extension/">Extensões de navegador gratuitas</a></li>
+		<li id="menu-item-20119" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20119"><a href="https://www.urban-vpn.com/pt-br/free-products/free-adblocker/">Urban AdBlocker grátis</a></li>
+		<li id="menu-item-20117" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20117"><a href="https://chrome.google.com/webstore/detail/urban-safe-browsing/efbobpikdmjaaklfkdlgfopochnjadab">Proteção anti-malware gratuita</a></li>
+		<li id="menu-item-20120" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20120"><a href="https://www.urban-vpn.com/pt-br/free-products/free-youtube-adblocker/">Youtube™ AdBlocker grátis</a></li>
+		<li id="menu-item-20121" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20121"><a href="https://www.urban-vpn.com/pt-br/free-products/free-travel-vpn/">VPN grátis para Travel</a></li>
+		<li id="menu-item-20122" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20122"><a href="https://www.urban-vpn.com/pt-br/free-products/free-hotspot-shield/">Hotspot Shield grátis</a></li>
+		<li id="menu-item-20123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20123"><a href="https://www.urban-vpn.com/pt-br/free-products/hide-my-ip/">Esconda meu IP</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20124" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20124"><a href="#"><div class="menu-item__img"> <img width="21" height="21" src="fonts/browser-3.svg" alt></div><span>VPN para plataformas</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20125"><a href="https://www.urban-vpn.com/pt-br/free-products/free-windows-vpn/">VPN grátis para Windows</a></li>
+		<li id="menu-item-20128" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20128"><a href="https://www.urban-vpn.com/pt-br/free-products/free-android-vpn/">VPN grátis para Android</a></li>
+		<li id="menu-item-20126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20126"><a href="https://www.urban-vpn.com/pt-br/free-products/free-mac-vpn/">VPN gratuita para Mac</a></li>
+		<li id="menu-item-20127" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20127"><a href="https://www.urban-vpn.com/pt-br/free-products/free-pc-laptop-vpn/">VPN gratuita para computador/notebook</a></li>
+		<li id="menu-item-20129" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20129"><a href="https://www.urban-vpn.com/pt-br/free-products/free-iphone-vpn/">VPN grátis para IPhone</a></li>
+		<li id="menu-item-20130" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20130"><a href="https://www.urban-vpn.com/pt-br/free-products/free-router-ip-address-vpn/">Endereço IP de roteador VPN</a></li>
+		<li id="menu-item-20131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20131"><a href="https://www.urban-vpn.com/pt-br/free-products/free-proxy/">Proxy de desbloqueio gratuito</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20132"><a href="#"><div class="menu-item__img"> <img width="28" height="28" src="fonts/gaming-1.svg" alt></div><span>Soluções de VPN para o seu estilo de vida</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20133"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/">VPN grátis para Gaming</a>
+		<ul class="sub-menu">
+			<li id="menu-item-20134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20134"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-pubg/">VPN grátis para PUBG</a></li>
+			<li id="menu-item-20135" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20135"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-free-fire/">VPN grátis para Free Fire</a></li>
+			<li id="menu-item-20136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20136"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-warzone/">VPN grátis para Warzone</a></li>
+			<li id="menu-item-20137" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20137"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-gameloop/">VPN grátis para Gameloop</a></li>
+			<li id="menu-item-20138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20138"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-mobile-legends/">VPN grátis para Mobile Legends</a></li>
+			<li id="menu-item-20140" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20140"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/league-of-legends-vpn/">VPN grátis para League of Legends</a></li>
+		</ul>
+</li>
+		<li id="menu-item-20141" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20141"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/">VPN grátis para streaming de esportes</a>
+		<ul class="sub-menu">
+			<li id="menu-item-20143" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20143"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nba-streaming-vpn/">VPN de streaming de NBA</a></li>
+			<li id="menu-item-20144" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20144"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/ipl-streaming-vpn/">VPN de streaming de IPL</a></li>
+			<li id="menu-item-20145" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20145"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nfl-streaming-vpn/">VPN de streaming de NFL</a></li>
+			<li id="menu-item-20146" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20146"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/mlb-streaming-vpn/">VPN de streaming de MLB</a></li>
+			<li id="menu-item-20147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20147"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nhl-streaming-vpn/">VPN de streaming de NHL</a></li>
+			<li id="menu-item-20148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20148"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/ufc-streaming-vpn/">VPN de streaming de UFC</a></li>
+			<li id="menu-item-20149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20149"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/mma-streaming-vpn/">VPN de streaming de MMA</a></li>
+			<li id="menu-item-20150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20150"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/f1-streaming-vpn/">VPN de streaming de F1</a></li>
+			<li id="menu-item-20151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20151"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/motogp-streaming-vpn/">VPN de streaming de MotoGP</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li id="menu-item-20152" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20152"><a href="#"><div class="menu-item__img"> <img width="26" height="26" src="images/devices-2.png" alt></div><span>VPN for Applications</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20153"><a href="https://www.urban-vpn.com/pt-br/free-products/free-netflix-vpn/">VPN grátis para Netflix</a></li>
+		<li id="menu-item-20154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20154"><a href="https://www.urban-vpn.com/pt-br/free-products/free-disney-plus-vpn/">VPN gratuita para Disney</a></li>
+		<li id="menu-item-20155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20155"><a href="https://www.urban-vpn.com/pt-br/free-products/free-twitter-vpn/">VPN grátis para Twitter</a></li>
+		<li id="menu-item-20156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20156"><a href="https://www.urban-vpn.com/pt-br/free-products/free-reddit-vpn/">VPN grátis para Reddit</a></li>
+		<li id="menu-item-20157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20157"><a href="https://www.urban-vpn.com/pt-br/free-products/free-craigslist-vpn/">VPN grátis para Craigslist</a></li>
+		<li id="menu-item-20158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20158"><a href="https://www.urban-vpn.com/pt-br/free-products/free-tumblr-vpn/">VPN grátis para Tumblr</a></li>
+		<li id="menu-item-20159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20159"><a href="https://www.urban-vpn.com/pt-br/free-products/free-roblox-vpn/">VPN grátis para Roblox</a></li>
+		<li id="menu-item-20160" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20160"><a href="https://www.urban-vpn.com/pt-br/free-products/free-amazon-fire-tv-stick-vpn/">Amazon Fire TV Stick grátis</a></li>
+		<li id="menu-item-20161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20161"><a href="https://www.urban-vpn.com/pt-br/free-products/free-hulu-vpn/">VPN grátis para Hulu</a></li>
+		<li id="menu-item-20415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20415"><a href="https://www.urban-vpn.com/pt-br/free-products/free-telegram-vpn/">VPN grátis para Telegram</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20162" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20162"><a><div class="menu-item__img"> <img width="26" height="26" src="images/devices-2.png" alt></div><span>Free tools</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20163" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20163"><a href="https://www.urban-vpn.com/pt-br/free-products/random-password-generator/">Gerador de senha aleatória</a></li>
+		<li id="menu-item-20164" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20164"><a href="https://www.urban-vpn.com/pt-br/free-products/chrome-proxy-settings/">Configurações de proxy do Chrome</a></li>
+		<li id="menu-item-20165" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20165"><a href="https://www.urban-vpn.com/pt-br/free-products/ip-location/">Localização de IP</a></li>
+		<li id="menu-item-20166" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20166"><a href="https://www.urban-vpn.com/pt-br/free-products/dns-leak/">Vazamento de DNS</a></li>
+		<li id="menu-item-20167" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20167"><a href="https://www.urban-vpn.com/pt-br/free-products/webrtc-leak/">Vazamento de WebRTC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-20168" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20168"><a href="https://www.urban-vpn.com/pt-br/features/"></a>
+<ul class="sub-menu">
+	<li id="menu-item-20169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20169"><a href="https://www.urban-vpn.com/pt-br/features/"><div class="menu-item__img"> <img width="22" height="22" src="fonts/lego.svg" alt></div><span></span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20272"><a href="https://www.urban-vpn.com/pt-br/features/anonymous-browsing/">Navegação anônima</a></li>
+		<li id="menu-item-20268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20268"><a href="https://www.urban-vpn.com/pt-br/features/isp-throttling/">Limitação de ISP</a></li>
+		<li id="menu-item-20273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20273"><a href="https://www.urban-vpn.com/pt-br/features/server-locations/">Locais do servidor</a></li>
+		<li id="menu-item-20269" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20269"><a href="https://www.urban-vpn.com/pt-br/features/unblock-any-website/">Desbloquear qualquer site</a></li>
+		<li id="menu-item-20271" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20271"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-bandwidth/">Largura de banda ilimitada</a></li>
+		<li id="menu-item-20275" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20275"><a href="/wp-content/uploads/2023/04/compliance-overview.pdf">Declaração de Conformidade</a></li>
+		<li id="menu-item-20270" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20270"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-devices/">Dispositivos ilimitados</a></li>
+		<li id="menu-item-20274" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20274"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-vpn/">VPN ilimitados</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-20170" class="right sub-menu__coutry menu-item menu-item-type-taxonomy menu-item-object-locations_cat current-locations-ancestor current-menu-ancestor current-menu-parent current-locations-parent menu-item-has-children menu-item-20170"><a href="https://www.urban-vpn.com/pt-br/locations/">Locais</a>
+<ul class="sub-menu">
+	<li id="menu-item-20171" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20171"><a href="#"><div class="menu-item__img"> <img width="24" height="28" src="fonts/location-am.svg" alt></div><span>América</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20172" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20172"><a href="https://www.urban-vpn.com/pt-br/locations/argentina-vpn/">Argentina</a></li>
+		<li id="menu-item-20173" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20173"><a href="https://www.urban-vpn.com/pt-br/locations/brazil-vpn/">Brasil</a></li>
+		<li id="menu-item-20174" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20174"><a href="https://www.urban-vpn.com/pt-br/locations/bolivia-vpn/">Bolívia</a></li>
+		<li id="menu-item-20175" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20175"><a href="https://www.urban-vpn.com/pt-br/locations/chile-vpn/">Chile</a></li>
+		<li id="menu-item-20176" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20176"><a href="https://www.urban-vpn.com/pt-br/locations/colombia-vpn/">Colômbia</a></li>
+		<li id="menu-item-20177" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20177"><a href="https://www.urban-vpn.com/pt-br/locations/ecuador-vpn/">Equador</a></li>
+		<li id="menu-item-20178" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20178"><a href="https://www.urban-vpn.com/pt-br/locations/paraguay-vpn/">Paraguai</a></li>
+		<li id="menu-item-20179" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20179"><a href="https://www.urban-vpn.com/pt-br/locations/peru-vpn/">Peru</a></li>
+		<li id="menu-item-20180" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20180"><a href="https://www.urban-vpn.com/pt-br/locations/uruguay-vpn/">Uruguai</a></li>
+		<li id="menu-item-20181" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20181"><a href="https://www.urban-vpn.com/pt-br/locations/venezuela-vpn/">Venezuela</a></li>
+		<li id="menu-item-20182" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20182"><a href="https://www.urban-vpn.com/pt-br/locations/panama-vpn/">Panamá</a></li>
+		<li id="menu-item-20183" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20183"><a href="https://www.urban-vpn.com/pt-br/locations/costa-rica-vpn/">Costa Rica</a></li>
+		<li id="menu-item-20184" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20184"><a href="https://www.urban-vpn.com/pt-br/locations/guatemala-vpn/">Guatemala</a></li>
+		<li id="menu-item-20185" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20185"><a href="https://www.urban-vpn.com/pt-br/locations/honduras-vpn/">Honduras</a></li>
+		<li id="menu-item-20186" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20186"><a href="https://www.urban-vpn.com/pt-br/locations/nicaragua-vpn/">Nicarágua</a></li>
+		<li id="menu-item-20187" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20187"><a href="https://www.urban-vpn.com/pt-br/locations/puerto-rico-vpn/">Porto Rico</a></li>
+		<li id="menu-item-20188" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20188"><a href="https://www.urban-vpn.com/pt-br/locations/canada-vpn/">Canadá</a></li>
+		<li id="menu-item-20189" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20189"><a href="https://www.urban-vpn.com/pt-br/locations/mexico-vpn/">México</a></li>
+		<li id="menu-item-20190" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20190"><a href="https://www.urban-vpn.com/pt-br/locations/usa-vpn/">EUA</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20191" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-20191"><a href="#"><div class="menu-item__img"> <img width="31" height="20" src="fonts/location-eu.svg" alt></div><span>Europa , Oriente Médio & África</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20192" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20192"><a href="https://www.urban-vpn.com/pt-br/locations/austria-vpn/">Áustria</a></li>
+		<li id="menu-item-20193" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20193"><a href="https://www.urban-vpn.com/pt-br/locations/belarus-vpn/">Bielorrússia</a></li>
+		<li id="menu-item-20194" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20194"><a href="https://www.urban-vpn.com/pt-br/locations/belgium-vpn/">Bélgica</a></li>
+		<li id="menu-item-20195" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20195"><a href="https://www.urban-vpn.com/pt-br/locations/bulgaria-vpn/">Bulgária</a></li>
+		<li id="menu-item-20196" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20196"><a href="https://www.urban-vpn.com/pt-br/locations/croatia-vpn/">Croácia</a></li>
+		<li id="menu-item-20197" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20197"><a href="https://www.urban-vpn.com/pt-br/locations/cyprus-vpn/">Chipre</a></li>
+		<li id="menu-item-20198" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20198"><a href="https://www.urban-vpn.com/pt-br/locations/czech-republic-vpn/">República Tcheca</a></li>
+		<li id="menu-item-20199" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20199"><a href="https://www.urban-vpn.com/pt-br/locations/denmark-vpn/">Dinamarca</a></li>
+		<li id="menu-item-20200" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20200"><a href="https://www.urban-vpn.com/pt-br/locations/estonia-vpn/">Estônia</a></li>
+		<li id="menu-item-20201" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20201"><a href="https://www.urban-vpn.com/pt-br/locations/uk-vpn/">Reino Unido</a></li>
+		<li id="menu-item-20202" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20202"><a href="https://www.urban-vpn.com/pt-br/locations/france-vpn/">França</a></li>
+		<li id="menu-item-20203" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20203"><a href="https://www.urban-vpn.com/pt-br/locations/finland-vpn/">Finlândia</a></li>
+		<li id="menu-item-20204" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20204"><a href="https://www.urban-vpn.com/pt-br/locations/germany-vpn/">Alemanha</a></li>
+		<li id="menu-item-20205" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20205"><a href="https://www.urban-vpn.com/pt-br/locations/greece-vpn/">Grécia</a></li>
+		<li id="menu-item-20206" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20206"><a href="https://www.urban-vpn.com/pt-br/locations/hungary-vpn/">Hungria</a></li>
+		<li id="menu-item-20207" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20207"><a href="https://www.urban-vpn.com/pt-br/locations/iceland-vpn/">Islândia</a></li>
+		<li id="menu-item-20208" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20208"><a href="https://www.urban-vpn.com/pt-br/locations/ireland-vpn/">Irlanda</a></li>
+		<li id="menu-item-20209" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20209"><a href="https://www.urban-vpn.com/pt-br/locations/italy-vpn/">Itália</a></li>
+		<li id="menu-item-20210" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20210"><a href="https://www.urban-vpn.com/pt-br/locations/latvia-vpn/">Letônia</a></li>
+		<li id="menu-item-20211" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20211"><a href="https://www.urban-vpn.com/pt-br/locations/lithuania-vpn/">Lituânia</a></li>
+		<li id="menu-item-20212" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20212"><a href="https://www.urban-vpn.com/pt-br/locations/luxembourg-vpn/">Luxemburgo</a></li>
+		<li id="menu-item-20213" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20213"><a href="https://www.urban-vpn.com/pt-br/locations/malta-vpn/">Malta</a></li>
+		<li id="menu-item-20214" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20214"><a href="https://www.urban-vpn.com/pt-br/locations/netherlands-vpn/">Países Baixos</a></li>
+		<li id="menu-item-20215" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20215"><a href="https://www.urban-vpn.com/pt-br/locations/norway-vpn/">Noruega</a></li>
+		<li id="menu-item-20216" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20216"><a href="https://www.urban-vpn.com/pt-br/locations/poland-vpn/">Polônia</a></li>
+		<li id="menu-item-20217" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20217"><a href="https://www.urban-vpn.com/pt-br/locations/portugal-vpn/">Portugal</a></li>
+		<li id="menu-item-20218" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20218"><a href="https://www.urban-vpn.com/pt-br/locations/romania-vpn/">Romênia</a></li>
+		<li id="menu-item-20219" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20219"><a href="https://www.urban-vpn.com/pt-br/locations/russia-vpn/">Rússia</a></li>
+		<li id="menu-item-20220" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20220"><a href="https://www.urban-vpn.com/pt-br/locations/serbia-vpn/">Sérvia</a></li>
+		<li id="menu-item-20221" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20221"><a href="https://www.urban-vpn.com/pt-br/locations/slovakia-vpn/">Eslováquia</a></li>
+		<li id="menu-item-20222" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20222"><a href="https://www.urban-vpn.com/pt-br/locations/slovenia-vpn/">Eslovênia</a></li>
+		<li id="menu-item-20223" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20223"><a href="https://www.urban-vpn.com/pt-br/locations/spain-vpn/">Espanha</a></li>
+		<li id="menu-item-20224" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20224"><a href="https://www.urban-vpn.com/pt-br/locations/sweden-vpn/">Suécia</a></li>
+		<li id="menu-item-20225" class="menu-item menu-item-type-post_type menu-item-object-locations current-menu-item menu-item-20225"><a href="https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/" aria-current="page">Suíça</a></li>
+		<li id="menu-item-20226" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20226"><a href="https://www.urban-vpn.com/pt-br/locations/ukraine-vpn/">Ucrânia</a></li>
+		<li id="menu-item-20227" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20227"><a href="https://www.urban-vpn.com/pt-br/locations/israel-vpn/">Israel</a></li>
+		<li id="menu-item-20228" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20228"><a href="https://www.urban-vpn.com/pt-br/locations/jordan-vpn/">Jordânia</a></li>
+		<li id="menu-item-20229" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20229"><a href="https://www.urban-vpn.com/pt-br/locations/qatar-vpn/">Catar</a></li>
+		<li id="menu-item-20230" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20230"><a href="https://www.urban-vpn.com/pt-br/locations/turkey-vpn/">Turquia</a></li>
+		<li id="menu-item-20231" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20231"><a href="https://www.urban-vpn.com/pt-br/locations/saudi-arabia-vpn/">Arábia Saudita</a></li>
+		<li id="menu-item-20232" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20232"><a href="https://www.urban-vpn.com/pt-br/locations/uae-vpn/">Emirados Árabes Unidos</a></li>
+		<li id="menu-item-20233" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20233"><a href="https://www.urban-vpn.com/pt-br/locations/algeria-vpn/">Argélia</a></li>
+		<li id="menu-item-20234" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20234"><a href="https://www.urban-vpn.com/pt-br/locations/egypt-vpn/">Egito</a></li>
+		<li id="menu-item-20235" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20235"><a href="https://www.urban-vpn.com/pt-br/locations/morocco-vpn/">Marrocos</a></li>
+		<li id="menu-item-20236" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20236"><a href="https://www.urban-vpn.com/pt-br/locations/south-africa-vpn/">África do Sul</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20237"><a href="#"><div class="menu-item__img"> <img width="29" height="33" src="images/frame.png" alt></div><span>Ásia & Oceania</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20238" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20238"><a href="https://www.urban-vpn.com/pt-br/locations/china-vpn/">China</a></li>
+		<li id="menu-item-20239" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20239"><a href="https://www.urban-vpn.com/pt-br/locations/hong-kong-vpn/">Hong Kong</a></li>
+		<li id="menu-item-20241" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20241"><a href="https://www.urban-vpn.com/pt-br/locations/india-vpn/">Índia</a></li>
+		<li id="menu-item-20242" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20242"><a href="https://www.urban-vpn.com/pt-br/locations/indonesia-vpn/">Indonésia</a></li>
+		<li id="menu-item-20243" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20243"><a href="https://www.urban-vpn.com/pt-br/locations/japan-vpn/">Japão</a></li>
+		<li id="menu-item-20244" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20244"><a href="https://www.urban-vpn.com/pt-br/locations/kazakhstan-vpn/">Cazaquistão</a></li>
+		<li id="menu-item-20245" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20245"><a href="https://www.urban-vpn.com/pt-br/locations/kyrgyzstan-vpn/">Quirguistão</a></li>
+		<li id="menu-item-20246" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20246"><a href="https://www.urban-vpn.com/pt-br/locations/malaysia-vpn/">Malásia</a></li>
+		<li id="menu-item-20247" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20247"><a href="https://www.urban-vpn.com/pt-br/locations/mongolia-vpn/">Mongólia</a></li>
+		<li id="menu-item-20248" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20248"><a href="https://www.urban-vpn.com/pt-br/locations/pakistan-vpn/">Paquistão</a></li>
+		<li id="menu-item-20249" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20249"><a href="https://www.urban-vpn.com/pt-br/locations/philippines-vpn/">Filipinas</a></li>
+		<li id="menu-item-20250" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20250"><a href="https://www.urban-vpn.com/pt-br/locations/singapore-vpn/">Singapura</a></li>
+		<li id="menu-item-20251" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20251"><a href="https://www.urban-vpn.com/pt-br/locations/south-korea-vpn/">Coreia do Sul</a></li>
+		<li id="menu-item-20252" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20252"><a href="https://www.urban-vpn.com/pt-br/locations/taiwan-vpn/">Taiwan</a></li>
+		<li id="menu-item-20253" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20253"><a href="https://www.urban-vpn.com/pt-br/locations/thailand-vpn/">Tailândia</a></li>
+		<li id="menu-item-20254" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20254"><a href="https://www.urban-vpn.com/pt-br/locations/vietnam-vpn/">Vietnã</a></li>
+		<li id="menu-item-20255" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20255"><a href="https://www.urban-vpn.com/pt-br/locations/australia-vpn/">Austrália</a></li>
+		<li id="menu-item-20256" class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20256"><a href="https://www.urban-vpn.com/pt-br/locations/new-zealand-vpn/">Nova Zelândia</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-20257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20257"><a href="https://www.urban-vpn.com/pt-br/about-us/">Sobre nós</a>
+<ul class="sub-menu">
+	<li id="menu-item-20258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20258"><a href="https://www.urban-vpn.com/pt-br/about-us/"><div class="menu-item__img"> <img width="26" height="26" src="fonts/info.svg" alt></div><span>Sobre nós</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-20259" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20259"><a href="/wp-content/uploads/2023/04/compliance-overview.pdf">Declaração de Conformidade</a></li>
+		<li id="menu-item-20260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20260"><a href="https://www.urban-vpn.com/pt-br/about-us/privacy/">Política de Privacidade</a></li>
+		<li id="menu-item-20262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20262"><a href="https://www.urban-vpn.com/pt-br/about-us/terms-of-service/">Termos de Uso</a></li>
+		<li id="menu-item-20261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20261"><a href="https://www.urban-vpn.com/pt-br/about-us/data-subject-rights/">Direitos do usuário</a></li>
+		<li id="menu-item-20263" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20263"><a href="https://www.urban-vpn.com/pt-br/about-us/why-free/">Por que é grátis?</a></li>
+		<li id="menu-item-20264" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20264"><a href="https://www.urban-vpn.com/pt-br/about-us/do-not-sell/">Venda de dados</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-21019" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21019"><a href="/glossary/"></a></li>
+<li id="menu-item-21113" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21113"><a href="/blog/"></a></li>
+                                </ul>
+                            </div>
+                        </div><a class="logo" href="https://www.urban-vpn.com/pt-br/"><img width="120" height="23" data-no-lazy="1" src="fonts/logo.svg" alt></a>
+                                                                                    </ul>
+                        <nav>
+
+                            <ul class="menu">
+                                <li class="right sub-menu__float menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20267"><a href="https://www.urban-vpn.com/pt-br/free-products/"></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20116"><a href="#"><div class="menu-item__img"> <img width="21" height="21" src="fonts/browser-2.svg" alt></div><span>Plugins para navegador</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20118"><a href="https://www.urban-vpn.com/pt-br/free-products/free-browser-extension/">Extensões de navegador gratuitas</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20119"><a href="https://www.urban-vpn.com/pt-br/free-products/free-adblocker/">Urban AdBlocker grátis</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20117"><a href="https://chrome.google.com/webstore/detail/urban-safe-browsing/efbobpikdmjaaklfkdlgfopochnjadab">Proteção anti-malware gratuita</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20120"><a href="https://www.urban-vpn.com/pt-br/free-products/free-youtube-adblocker/">Youtube™ AdBlocker grátis</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20121"><a href="https://www.urban-vpn.com/pt-br/free-products/free-travel-vpn/">VPN grátis para Travel</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20122"><a href="https://www.urban-vpn.com/pt-br/free-products/free-hotspot-shield/">Hotspot Shield grátis</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20123"><a href="https://www.urban-vpn.com/pt-br/free-products/hide-my-ip/">Esconda meu IP</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20124"><a href="#"><div class="menu-item__img"> <img width="21" height="21" src="fonts/browser-3.svg" alt></div><span>VPN para plataformas</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20125"><a href="https://www.urban-vpn.com/pt-br/free-products/free-windows-vpn/">VPN grátis para Windows</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20128"><a href="https://www.urban-vpn.com/pt-br/free-products/free-android-vpn/">VPN grátis para Android</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20126"><a href="https://www.urban-vpn.com/pt-br/free-products/free-mac-vpn/">VPN gratuita para Mac</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20127"><a href="https://www.urban-vpn.com/pt-br/free-products/free-pc-laptop-vpn/">VPN gratuita para computador/notebook</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20129"><a href="https://www.urban-vpn.com/pt-br/free-products/free-iphone-vpn/">VPN grátis para IPhone</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20130"><a href="https://www.urban-vpn.com/pt-br/free-products/free-router-ip-address-vpn/">Endereço IP de roteador VPN</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20131"><a href="https://www.urban-vpn.com/pt-br/free-products/free-proxy/">Proxy de desbloqueio gratuito</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20132"><a href="#"><div class="menu-item__img"> <img width="28" height="28" src="fonts/gaming-1.svg" alt></div><span>Soluções de VPN para o seu estilo de vida</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20133"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/">VPN grátis para Gaming</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20134"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-pubg/">VPN grátis para PUBG</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20135"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-free-fire/">VPN grátis para Free Fire</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20136"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-warzone/">VPN grátis para Warzone</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20137"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-gameloop/">VPN grátis para Gameloop</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20138"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/free-vpn-for-mobile-legends/">VPN grátis para Mobile Legends</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20140"><a href="https://www.urban-vpn.com/pt-br/free-products/free-gaming-vpn/league-of-legends-vpn/">VPN grátis para League of Legends</a></li>
+		</ul>
+</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20141"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/">VPN grátis para streaming de esportes</a>
+		<ul class="sub-menu">
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20143"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nba-streaming-vpn/">VPN de streaming de NBA</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20144"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/ipl-streaming-vpn/">VPN de streaming de IPL</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20145"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nfl-streaming-vpn/">VPN de streaming de NFL</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20146"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/mlb-streaming-vpn/">VPN de streaming de MLB</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20147"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/nhl-streaming-vpn/">VPN de streaming de NHL</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20148"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/ufc-streaming-vpn/">VPN de streaming de UFC</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20149"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/mma-streaming-vpn/">VPN de streaming de MMA</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20150"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/f1-streaming-vpn/">VPN de streaming de F1</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20151"><a href="https://www.urban-vpn.com/pt-br/free-products/free-sports-streaming-vpn/motogp-streaming-vpn/">VPN de streaming de MotoGP</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20152"><a href="#"><div class="menu-item__img"> <img width="26" height="26" src="images/devices-2.png" alt></div><span>VPN for Applications</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20153"><a href="https://www.urban-vpn.com/pt-br/free-products/free-netflix-vpn/">VPN grátis para Netflix</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20154"><a href="https://www.urban-vpn.com/pt-br/free-products/free-disney-plus-vpn/">VPN gratuita para Disney</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20155"><a href="https://www.urban-vpn.com/pt-br/free-products/free-twitter-vpn/">VPN grátis para Twitter</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20156"><a href="https://www.urban-vpn.com/pt-br/free-products/free-reddit-vpn/">VPN grátis para Reddit</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20157"><a href="https://www.urban-vpn.com/pt-br/free-products/free-craigslist-vpn/">VPN grátis para Craigslist</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20158"><a href="https://www.urban-vpn.com/pt-br/free-products/free-tumblr-vpn/">VPN grátis para Tumblr</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20159"><a href="https://www.urban-vpn.com/pt-br/free-products/free-roblox-vpn/">VPN grátis para Roblox</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20160"><a href="https://www.urban-vpn.com/pt-br/free-products/free-amazon-fire-tv-stick-vpn/">Amazon Fire TV Stick grátis</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20161"><a href="https://www.urban-vpn.com/pt-br/free-products/free-hulu-vpn/">VPN grátis para Hulu</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20415"><a href="https://www.urban-vpn.com/pt-br/free-products/free-telegram-vpn/">VPN grátis para Telegram</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20162"><a><div class="menu-item__img"> <img width="26" height="26" src="images/devices-2.png" alt></div><span>Free tools</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20163"><a href="https://www.urban-vpn.com/pt-br/free-products/random-password-generator/">Gerador de senha aleatória</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20164"><a href="https://www.urban-vpn.com/pt-br/free-products/chrome-proxy-settings/">Configurações de proxy do Chrome</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20165"><a href="https://www.urban-vpn.com/pt-br/free-products/ip-location/">Localização de IP</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20166"><a href="https://www.urban-vpn.com/pt-br/free-products/dns-leak/">Vazamento de DNS</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20167"><a href="https://www.urban-vpn.com/pt-br/free-products/webrtc-leak/">Vazamento de WebRTC</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20168"><a href="https://www.urban-vpn.com/pt-br/features/"></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20169"><a href="https://www.urban-vpn.com/pt-br/features/"><div class="menu-item__img"> <img width="22" height="22" src="fonts/lego.svg" alt></div><span></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20272"><a href="https://www.urban-vpn.com/pt-br/features/anonymous-browsing/">Navegação anônima</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20268"><a href="https://www.urban-vpn.com/pt-br/features/isp-throttling/">Limitação de ISP</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20273"><a href="https://www.urban-vpn.com/pt-br/features/server-locations/">Locais do servidor</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20269"><a href="https://www.urban-vpn.com/pt-br/features/unblock-any-website/">Desbloquear qualquer site</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20271"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-bandwidth/">Largura de banda ilimitada</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20275"><a href="/wp-content/uploads/2023/04/compliance-overview.pdf">Declaração de Conformidade</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20270"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-devices/">Dispositivos ilimitados</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20274"><a href="https://www.urban-vpn.com/pt-br/features/unlimited-vpn/">VPN ilimitados</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="right sub-menu__coutry menu-item menu-item-type-taxonomy menu-item-object-locations_cat current-locations-ancestor current-menu-ancestor current-menu-parent current-locations-parent menu-item-has-children menu-item-20170"><a href="https://www.urban-vpn.com/pt-br/locations/"></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20171"><a href="#"><div class="menu-item__img"> <img width="24" height="28" src="fonts/location-am.svg" alt></div><span>América</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20172"><a href="https://www.urban-vpn.com/pt-br/locations/argentina-vpn/">Argentina</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20173"><a href="https://www.urban-vpn.com/pt-br/locations/brazil-vpn/">Brasil</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20174"><a href="https://www.urban-vpn.com/pt-br/locations/bolivia-vpn/">Bolívia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20175"><a href="https://www.urban-vpn.com/pt-br/locations/chile-vpn/">Chile</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20176"><a href="https://www.urban-vpn.com/pt-br/locations/colombia-vpn/">Colômbia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20177"><a href="https://www.urban-vpn.com/pt-br/locations/ecuador-vpn/">Equador</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20178"><a href="https://www.urban-vpn.com/pt-br/locations/paraguay-vpn/">Paraguai</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20179"><a href="https://www.urban-vpn.com/pt-br/locations/peru-vpn/">Peru</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20180"><a href="https://www.urban-vpn.com/pt-br/locations/uruguay-vpn/">Uruguai</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20181"><a href="https://www.urban-vpn.com/pt-br/locations/venezuela-vpn/">Venezuela</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20182"><a href="https://www.urban-vpn.com/pt-br/locations/panama-vpn/">Panamá</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20183"><a href="https://www.urban-vpn.com/pt-br/locations/costa-rica-vpn/">Costa Rica</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20184"><a href="https://www.urban-vpn.com/pt-br/locations/guatemala-vpn/">Guatemala</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20185"><a href="https://www.urban-vpn.com/pt-br/locations/honduras-vpn/">Honduras</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20186"><a href="https://www.urban-vpn.com/pt-br/locations/nicaragua-vpn/">Nicarágua</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20187"><a href="https://www.urban-vpn.com/pt-br/locations/puerto-rico-vpn/">Porto Rico</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20188"><a href="https://www.urban-vpn.com/pt-br/locations/canada-vpn/">Canadá</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20189"><a href="https://www.urban-vpn.com/pt-br/locations/mexico-vpn/">México</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20190"><a href="https://www.urban-vpn.com/pt-br/locations/usa-vpn/">EUA</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-20191"><a href="#"><div class="menu-item__img"> <img width="31" height="20" src="fonts/location-eu.svg" alt></div><span>Europa , Oriente Médio & África</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20192"><a href="https://www.urban-vpn.com/pt-br/locations/austria-vpn/">Áustria</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20193"><a href="https://www.urban-vpn.com/pt-br/locations/belarus-vpn/">Bielorrússia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20194"><a href="https://www.urban-vpn.com/pt-br/locations/belgium-vpn/">Bélgica</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20195"><a href="https://www.urban-vpn.com/pt-br/locations/bulgaria-vpn/">Bulgária</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20196"><a href="https://www.urban-vpn.com/pt-br/locations/croatia-vpn/">Croácia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20197"><a href="https://www.urban-vpn.com/pt-br/locations/cyprus-vpn/">Chipre</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20198"><a href="https://www.urban-vpn.com/pt-br/locations/czech-republic-vpn/">República Tcheca</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20199"><a href="https://www.urban-vpn.com/pt-br/locations/denmark-vpn/">Dinamarca</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20200"><a href="https://www.urban-vpn.com/pt-br/locations/estonia-vpn/">Estônia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20201"><a href="https://www.urban-vpn.com/pt-br/locations/uk-vpn/">Reino Unido</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20202"><a href="https://www.urban-vpn.com/pt-br/locations/france-vpn/">França</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20203"><a href="https://www.urban-vpn.com/pt-br/locations/finland-vpn/">Finlândia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20204"><a href="https://www.urban-vpn.com/pt-br/locations/germany-vpn/">Alemanha</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20205"><a href="https://www.urban-vpn.com/pt-br/locations/greece-vpn/">Grécia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20206"><a href="https://www.urban-vpn.com/pt-br/locations/hungary-vpn/">Hungria</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20207"><a href="https://www.urban-vpn.com/pt-br/locations/iceland-vpn/">Islândia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20208"><a href="https://www.urban-vpn.com/pt-br/locations/ireland-vpn/">Irlanda</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20209"><a href="https://www.urban-vpn.com/pt-br/locations/italy-vpn/">Itália</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20210"><a href="https://www.urban-vpn.com/pt-br/locations/latvia-vpn/">Letônia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20211"><a href="https://www.urban-vpn.com/pt-br/locations/lithuania-vpn/">Lituânia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20212"><a href="https://www.urban-vpn.com/pt-br/locations/luxembourg-vpn/">Luxemburgo</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20213"><a href="https://www.urban-vpn.com/pt-br/locations/malta-vpn/">Malta</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20214"><a href="https://www.urban-vpn.com/pt-br/locations/netherlands-vpn/">Países Baixos</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20215"><a href="https://www.urban-vpn.com/pt-br/locations/norway-vpn/">Noruega</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20216"><a href="https://www.urban-vpn.com/pt-br/locations/poland-vpn/">Polônia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20217"><a href="https://www.urban-vpn.com/pt-br/locations/portugal-vpn/">Portugal</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20218"><a href="https://www.urban-vpn.com/pt-br/locations/romania-vpn/">Romênia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20219"><a href="https://www.urban-vpn.com/pt-br/locations/russia-vpn/">Rússia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20220"><a href="https://www.urban-vpn.com/pt-br/locations/serbia-vpn/">Sérvia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20221"><a href="https://www.urban-vpn.com/pt-br/locations/slovakia-vpn/">Eslováquia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20222"><a href="https://www.urban-vpn.com/pt-br/locations/slovenia-vpn/">Eslovênia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20223"><a href="https://www.urban-vpn.com/pt-br/locations/spain-vpn/">Espanha</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20224"><a href="https://www.urban-vpn.com/pt-br/locations/sweden-vpn/">Suécia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations current-menu-item menu-item-20225"><a href="https://www.urban-vpn.com/pt-br/locations/switzerland-vpn/" aria-current="page">Suíça</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20226"><a href="https://www.urban-vpn.com/pt-br/locations/ukraine-vpn/">Ucrânia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20227"><a href="https://www.urban-vpn.com/pt-br/locations/israel-vpn/">Israel</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20228"><a href="https://www.urban-vpn.com/pt-br/locations/jordan-vpn/">Jordânia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20229"><a href="https://www.urban-vpn.com/pt-br/locations/qatar-vpn/">Catar</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20230"><a href="https://www.urban-vpn.com/pt-br/locations/turkey-vpn/">Turquia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20231"><a href="https://www.urban-vpn.com/pt-br/locations/saudi-arabia-vpn/">Arábia Saudita</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20232"><a href="https://www.urban-vpn.com/pt-br/locations/uae-vpn/">Emirados Árabes Unidos</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20233"><a href="https://www.urban-vpn.com/pt-br/locations/algeria-vpn/">Argélia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20234"><a href="https://www.urban-vpn.com/pt-br/locations/egypt-vpn/">Egito</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20235"><a href="https://www.urban-vpn.com/pt-br/locations/morocco-vpn/">Marrocos</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20236"><a href="https://www.urban-vpn.com/pt-br/locations/south-africa-vpn/">África do Sul</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20237"><a href="#"><div class="menu-item__img"> <img width="29" height="33" src="images/frame.png" alt></div><span>Ásia & Oceania</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20238"><a href="https://www.urban-vpn.com/pt-br/locations/china-vpn/">China</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20239"><a href="https://www.urban-vpn.com/pt-br/locations/hong-kong-vpn/">Hong Kong</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20241"><a href="https://www.urban-vpn.com/pt-br/locations/india-vpn/">Índia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20242"><a href="https://www.urban-vpn.com/pt-br/locations/indonesia-vpn/">Indonésia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20243"><a href="https://www.urban-vpn.com/pt-br/locations/japan-vpn/">Japão</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20244"><a href="https://www.urban-vpn.com/pt-br/locations/kazakhstan-vpn/">Cazaquistão</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20245"><a href="https://www.urban-vpn.com/pt-br/locations/kyrgyzstan-vpn/">Quirguistão</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20246"><a href="https://www.urban-vpn.com/pt-br/locations/malaysia-vpn/">Malásia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20247"><a href="https://www.urban-vpn.com/pt-br/locations/mongolia-vpn/">Mongólia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20248"><a href="https://www.urban-vpn.com/pt-br/locations/pakistan-vpn/">Paquistão</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20249"><a href="https://www.urban-vpn.com/pt-br/locations/philippines-vpn/">Filipinas</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20250"><a href="https://www.urban-vpn.com/pt-br/locations/singapore-vpn/">Singapura</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20251"><a href="https://www.urban-vpn.com/pt-br/locations/south-korea-vpn/">Coreia do Sul</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20252"><a href="https://www.urban-vpn.com/pt-br/locations/taiwan-vpn/">Taiwan</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20253"><a href="https://www.urban-vpn.com/pt-br/locations/thailand-vpn/">Tailândia</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20254"><a href="https://www.urban-vpn.com/pt-br/locations/vietnam-vpn/">Vietnã</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20255"><a href="https://www.urban-vpn.com/pt-br/locations/australia-vpn/">Austrália</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-locations menu-item-20256"><a href="https://www.urban-vpn.com/pt-br/locations/new-zealand-vpn/">Nova Zelândia</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20257"><a href="https://www.urban-vpn.com/pt-br/about-us/"></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20258"><a href="https://www.urban-vpn.com/pt-br/about-us/"><div class="menu-item__img"> <img width="26" height="26" src="fonts/info.svg" alt></div><span></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20259"><a href="/wp-content/uploads/2023/04/compliance-overview.pdf">Declaração de Conformidade</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20260"><a href="https://www.urban-vpn.com/pt-br/about-us/privacy/">Política de Privacidade</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20262"><a href="https://www.urban-vpn.com/pt-br/about-us/terms-of-service/">Termos de Uso</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20261"><a href="https://www.urban-vpn.com/pt-br/about-us/data-subject-rights/">Direitos do usuário</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20263"><a href="https://www.urban-vpn.com/pt-br/about-us/why-free/">Por que é grátis?</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20264"><a href="https://www.urban-vpn.com/pt-br/about-us/do-not-sell/">Venda de dados</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21019"><a href="/glossary/"></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21113"><a href="/blog/"></a></li>
+                                                                                                <li>
+                                                </li>
+                                            
+                                            <li class="account"><a href="https://my.urban-vpn.com/"> <span></span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>    <main class="main">
+        <div class="hero hero-single-country">
+            <div class="container">
+            <div class="hero-bg"> <img width="1061" height="421" data-no-lazy="1" src="images/planet-big.webp" alt></div>
+        <div class="hero__left">
+        <div class="hero__text">
+            <h1>VPN Suíça - Plataforma VPN suíça grátis</h1>
+            
+<ul>
+<li>                   Segura, anônima e protegida                 </li>
+<li>                   Conecte-se com vários dispositivos                 </li>
+<li>                   Navegue na Internet de forma livre e anônima                 </li>
+<li>                   Selecione um IP da geolocalização de sua escolha                 </li>
+</ul>
+                <a rel="nofollow" data-ua-track="download_button" data-ua-track-params-position="top" data-product-id="URBAN_COMMON_BEHAVIOR" class="button dynamic_url_link start-now download-great dynamic_url_link btn-great" href="javascript:;"> <span> Download grátis</span></a>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="hero__img">
+                                        <img width="546" height="461" src="images/switzerland.webp" alt>
+                            </div>
+        </div>
+    </div>
+</div>
+<div class="triangle-right"></div>
+<div class="bg-shadow-pink"></div>
+        </div>
+        <section class="why-enjoy">
+            <div class="container">
+                <div class="why-enjoy__container">
+                    <h2>Como um usuário UrbanVPN na Suíça, você vai gostar</h2>
+                    <div class="why-enjoy__cards">
+                                                                                    <div class="why-enjoy__item">
+                                    <div class="why-enjoy__item-img"> <img width="64" height="64" src="fonts/unlock-1.svg" alt></div>
+                                    <h3>Anonimato</h3>
+                                </div>
+                                                            <div class="why-enjoy__item">
+                                    <div class="why-enjoy__item-img"> <img width="63" height="62" src="fonts/browser-1.svg" alt></div>
+                                    <h3>Liberdade para navegar por onde quiser</h3>
+                                </div>
+                                                            <div class="why-enjoy__item">
+                                    <div class="why-enjoy__item-img"> <img width="65" height="65" src="fonts/3-2.svg" alt></div>
+                                    <h3>Proteção em conexões Wi-Fi públicas</h3>
+                                </div>
+                                                                        </div>
+                </div>
+            </div>
+        </section>
+        <section class="card-info">
+            <div class="container">
+                <div class="card-info__container">
+                    <div class="card-info__img">
+                        <img width="416" height="329" src="images/block.webp" alt>
+                    </div>
+                    <div class="card-info__text">
+                        <h2>Mantenha-se anônimo enquanto navega na Internet na Suíça</h2>
+                        <p>Navegue na Internet com total liberdade, sem medo de ser bloqueado ou detectado com nossa VPN Suíça A Urban VPN tem servidores em todo o mundo, garantindo uma conexão de altíssima velocidade, além de milhares de endereços IP a escolher. Assim, você pode cuidar dos seus assuntos com tranquilidade, anonimato e segurança enquanto estiver na Suíça.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cards-content cards-content--big">
+            <div class="container">
+                <h2>Como a nossa VPN Suíça garante sua liberdade e privacidade na Internet</h2>
+                <div class="card-container">
+                                                                        <div class="card">
+                                <div class="card__img">
+                                    <img width="636" height="401" src="images/1-21.webp" alt>
+                                </div>
+                                <div class="card__text">
+                                    <p>Embora a liberdade na Internet seja bem-protegida na Suíça, o acesso a alguns sites pode ser restrito. Você pode usar a Urban VPN para acessar quaisquer sites, conteúdos de streaming e vídeos do YouTube restritos na região.                                    </p>
+                                </div>
+                            </div>
+                                                    <div class="card">
+                                <div class="card__img">
+                                    <img width="636" height="401" src="images/2-18.webp" alt>
+                                </div>
+                                <div class="card__text">
+                                    <p>A Urban VPN segue uma política integral de não registro, permitindo que você acesse todos sites e conteúdos sem restrições e sem rastrear sua atividade. A Urban VPN criptografa sua conexão e permite substituir seu endereço IP por outro da geolocalização à escolha. Assim, você pode navegar na Internet com segurança, sem se preocupar com a possibilidade de o governo, o seu provedor de Internet ou terceiros curiosos estarem monitorando suas atividades on-line.                                    </p>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <div class="bg-shadow-pink"> </div>
+            <div class="triangle-left"></div>
+        </section>
+        <section class="download-section">
+    <div class="container">
+        <h2 class="text-center">Proteja sua privacidade <br>
+com a Urban VPN</h2>
+        <p>Baixe a Urban VPN para desfrutar de total segurança e privacidade on-line, ocultando seu endereço IP.</p>
+            <a rel="nofollow" data-ua-track="download_button" data-ua-track-params-position="footer" data-product-id="URBAN_VPN_EXTENSION" class="button dynamic_url_link start-now download-great dynamic_url_link btn-great" href="javascript:;"> <span> Download grátis</span></a>
+    
+    </div>
+    <div class="bg-shadow-green"></div>
+    <div class="triangle-left"></div>
+</section>    </main>
+<footer class="footer">
+    <div class="container">
+        <div class="footer__links">
+            <div class="link__list">
+            </div>
+            <div class="link__list">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </div>
+
+                                                                                    </ul>
+                                                                                    </ul>
+                                                    <div class="translate translate--full dropdown">
+                                        <div class="translate-item open">
+                    </div>
+                            <div class="dropdown__menu">
+            <ul class="block-list">
+                                        </ul>
+        </div>
+                        </div>
+                <div class="link__list">
+</ul>                </div>
+                <div class="link__list">
+</ul>                </div>
+            </div>
+            <div class="link__list">
+                                                                                                            </div>
+                            </div>
+                                                                                                            </div>
+                            </div>
+                                                                                                            </div>
+                            </div>
+                                                            </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container"><small>© 2023 Urban VPN. All rights reserved.</small></div>
+    </div>
+</footer>
+</div>
+</script>
+<script type="rocketlazyloadscript">
+    var ajaxurl = 'https://www.urban-vpn.com/wp-admin/admin-ajax.php';
+</script>
+
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after" data-rocket-type="text/javascript">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type="text/javascript" id="rocket-preload-links-js-extra">
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index.php\/)?(.*)wp-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/www.urban-vpn.com\/pt-br\/","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after" data-rocket-type="text/javascript">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/themes/urbanvpn/js/jquery-3.6.0.min.js?ver=4.1" id="jqueryjs-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/themes/urbanvpn/js/slick.min.js?ver=4.1" id="slickjs-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/main.js?ver=1691159370" id="mainjs-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/scripts.js?ver=1691159370" id="scriptjs-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/random-password-generator.js?ver=1691159370" id="randompassword-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/urban-analytics.js?ver=1691159370" id="urbananalytics-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/google-analytics.js?ver=1691159370" id="googlealytics-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-content/cache/min/1/wp-content/themes/urbanvpn/js/ext_urls_handler.js?ver=1691159370" id="ext_urls_handler-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://www.urban-vpn.com/wp-includes/js/comment-reply.min.js?ver=6.3" id="comment-reply-js" defer></script>
+
+
+
+</body></html>
